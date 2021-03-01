@@ -46,6 +46,9 @@ jobs:
         run: cp .env.example .env
 
       - run: npm run build
+        env:
+          STREAMDECK_RESTREAMIO_LOGIN_URL: ${{ secrets.STREAMDECK_RESTREAMIO_LOGIN_URL }}
+          STREAMDECK_RESTREAMIO_REFRESH_URL: ${{ secrets.STREAMDECK_RESTREAMIO_REFRESH_URL }}
 
       - name: Copy additional assets
         run: |
