@@ -19,6 +19,10 @@
 
 > Integrate [Elgato Stream Deck](https://www.elgato.com/en/gaming/stream-deck) with [Restream.io](https://restream.io).
 
+## 🚀 Quick start
+
+[Download the latest release](https://github.com/dflydev/streamdeck-restreamio/releases/download/latest/com.dflydev.streamdeck.restreamio.streamDeckPlugin) from GitHub.
+
 ## Author
 
 👥 **dflydev**
