@@ -1,4 +1,4 @@
-<h1 align="center">✅ Stream Deck Restream.io plugin</h1>
+<h1 align="center">🔌 Stream Deck Restream.io plugin</h1>
 <p>
   <a href="https://github.com/dflydev/streamdeck-restreamio#readme" target="_blank">
     <img alt="Documentation" src="https://img.shields.io/badge/documentation-yes-brightgreen.svg" />

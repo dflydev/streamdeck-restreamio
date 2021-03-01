@@ -47,6 +47,10 @@ jobs:
 
       - run: npm run build
 
+      - name: Copy additional assets
+        run: |
+          cp LICENSE.txt README.md com.dflydev.streamdeck.restreamio.sdPlugin
+
       - name: StreamDeck Distribution Tool
         uses: AdamCarballo/streamdeck-distribution-tool@v1
         with:
@@ -60,5 +64,4 @@ jobs:
           prerelease: true
           title: "Latest Build"
           files: |
-            LICENSE
             release/com.dflydev.streamdeck.restreamio.streamDeckPlugin
