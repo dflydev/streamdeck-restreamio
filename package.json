@@ -1,0 +1,35 @@
+{
+  "name": "@dflydev/streamdeck-restreamio",
+  "version": "0.0.0",
+  "description": "Restream.io plugin for Stream Deck",
+  "repository": "https://github.com/dflydev/streamdeck-restreamio",
+  "scripts": {
+    "browserify": "browserify -t @sethvincent/dotenvify build/restreamio-plugin.js > com.dflydev.streamdeck.restreamio.sdPlugin/public/dist/restreamio-plugin-bundle.js && browserify -t @sethvincent/dotenvify build/restreamio-property-inspector.js > com.dflydev.streamdeck.restreamio.sdPlugin/public/dist/restreamio-property-inspector-bundle.js",
+    "build": "npm run tsc && npm run browserify",
+    "lint": "eslint src/**/*.ts",
+    "fix": "eslint --fix src/**/*.ts",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "tsc": "tsc -p tsconfig.json",
+    "watch": "tsc-watch --onSuccess \"npm run browserify\""
+  },
+  "author": "Beau Simensen <beau@dflydev.com> (https://beausimensen.com)",
+  "license": "MIT",
+  "devDependencies": {
+    "@sethvincent/dotenvify": "^1.0.4",
+    "@tsconfig/recommended": "^1.0.1",
+    "@types/node": "^14.14.31",
+    "@typescript-eslint/eslint-plugin": "^4.15.2",
+    "@typescript-eslint/parser": "^4.15.2",
+    "axios": "^0.21.1",
+    "axios-auth-refresh": "^3.1.0",
+    "browserify": "^17.0.0",
+    "dotenv": "^8.2.0",
+    "eslint": "^7.21.0",
+    "eslint-plugin-github": "^4.1.1",
+    "prettier": "^2.2.1",
+    "streamdeck-typescript": "^3.0.0",
+    "tsc-watch": "^4.2.9",
+    "typescript": "^4.2.2",
+    "watchify": "^4.0.0"
+  }
+}

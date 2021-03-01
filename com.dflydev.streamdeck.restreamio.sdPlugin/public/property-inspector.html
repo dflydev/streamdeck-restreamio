@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>com.dflydev.streamdeck.restreamio.pi</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="sdpi.css">
+    <script src="./dist/restreamio-property-inspector-bundle.js"></script>
+</head>
+<body>
+<div class="sdpi-wrapper" id="mainSettings">
+    <div class="sdpi-item" id="restreamio_account">
+        <div class="sdpi-item-label">Account</div>
+        <select class="sdpi-item-value select" id="restreamio_account_id"></select>
+    </div>
+    <div>
+        <div class="sdpi-item" id="restreamio_channel" style="display: none">
+            <div class="sdpi-item-label">Channel</div>
+            <select class="sdpi-item-value select" id="restreamio_channel_id"></select>
+        </div>
+        <div class="sdpi-item" id="restreamio_channel_name_wrapper" style="display: none">
+            <div class="sdpi-item-label">Name</div>
+            <input class="sdpi-item-value" id="restreamio_channel_name">
+        </div>
+        <div class="sdpi-item" id="restreamio_channel_platform_wrapper" style="display: none">
+            <div class="sdpi-item-label">Platform</div>
+            <input class="sdpi-item-value" id="restreamio_channel_platform">
+        </div>
+    </div>
+</div>
+</body>
+</html>

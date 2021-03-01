@@ -1,0 +1,49 @@
+{
+  "Actions": [
+    {
+      "Icon": "icons/channel-action-image",
+      "Name": "Channel",
+      "States": [
+        {
+          "Name": "On",
+          "Image": "icons/channel-on",
+          "TitleAlignment": "bottom",
+          "FontSize": "11"
+        },
+        {
+          "Name": "Off",
+          "Image": "icons/channel-off",
+          "TitleAlignment": "bottom",
+          "FontSize": "11"
+        }
+      ],
+      "Tooltip": "Toggle channel off/on",
+      "UUID": "com.dflydev.streamdeck.restreamio.channel"
+    }
+  ],
+  "SDKVersion": 2,
+  "Author": "dflydev",
+  "Category": "Restream.io",
+  "CategoryIcon": "icons/category-icon",
+  "CodePath": "public/plugin.html",
+  "PropertyInspectorPath": "public/property-inspector.html",
+  "Description": "Control and view stats from Restream.io",
+  "Name": "Restream.io plugin",
+  "Icon": "icons/category-icon",
+  "URL": "https://www.elgato.com/en/gaming/stream-deck",
+  "Version": "1.0.0",
+  "OS": [
+    {
+        "Platform": "mac", 
+        "MinimumVersion" : "10.11"
+    },
+    {
+        "Platform": "windows", 
+        "MinimumVersion" : "10"
+    }
+  ],
+  "Software": 
+    {
+        "MinimumVersion" : "4.1"
+  }
+}

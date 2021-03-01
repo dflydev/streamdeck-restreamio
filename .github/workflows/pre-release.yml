@@ -1,0 +1,61 @@
+name: "pre-release"
+
+on:
+  push:
+    branches:
+      - "master"
+
+jobs:
+  pre-release:
+    name: "Pre Release"
+    runs-on: "macos-latest"
+
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v2
+
+      - name: Get npm cache directory
+        id: npm_cache
+        run: |
+          echo "::set-output name=dir::$(npm config get cache)"
+
+      - name: Cache npm cache
+        uses: actions/cache@v1
+        with:
+          path: ${{ steps.npm_cache.outputs.dir }}
+          key: ${{ runner.os }}-npm-cache-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-npm-cache-
+
+      - name: Cache npm dependencies
+        uses: actions/cache@v1
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-npm-node-modules-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-npm-node-modules-
+
+      - run: npm install
+
+      - run: npm run lint
+
+      - run: npm run build
+
+      - name: StreamDeck Distribution Tool
+        uses: AdamCarballo/streamdeck-distribution-tool@v1
+        with:
+          input: com.dflydev.streamdeck.restreamio.sdPlugin
+          output: release
+
+      - uses: "marvinpinto/action-automatic-releases@latest"
+        with:
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          automatic_release_tag: "latest"
+          prerelease: true
+          title: "Latest Build"
+          files: |
+            LICENSE
+            release/com.dflydev.streamdeck.restreamio.streamDeckPlugin
