@@ -27,6 +27,7 @@
     "eslint": "^7.21.0",
     "eslint-plugin-github": "^4.1.1",
     "prettier": "^2.2.1",
+    "retry-axios": "^2.4.0",
     "streamdeck-typescript": "^3.0.0",
     "tsc-watch": "^4.2.9",
     "typescript": "^4.2.2",

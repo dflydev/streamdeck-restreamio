@@ -4,11 +4,13 @@ import {ManagedSettings} from '../settings/managed-settings'
 import {RestreamioStreamingPlatform, RestreamioToken} from './types'
 import {SettingsManager} from 'streamdeck-typescript'
 import createAuthRefreshInterceptor from 'axios-auth-refresh'
+import * as rax from 'retry-axios'
 
 export class RestreamioClient {
   private managedGlobalSettings: ManagedGlobalSettings
   private managedSettings?: ManagedSettings
   private authenticatedAxios: AxiosInstance
+  private unAuthenticatedAxios: AxiosInstance
 
   static fromSettingsManager(
     settingsManager: SettingsManager,
@@ -27,6 +29,19 @@ export class RestreamioClient {
     this.managedGlobalSettings = managedGlobalSettings
     this.managedSettings = managedSettings
     this.authenticatedAxios = this.createAuthenticatedAxios()
+    this.unAuthenticatedAxios = RestreamioClient.createUnauthenticatedAxios()
+  }
+
+  private static createUnauthenticatedAxios(): AxiosInstance {
+    const unauthenticatedAxios = axios.create()
+
+    unauthenticatedAxios.defaults.raxConfig = {
+      instance: unauthenticatedAxios,
+    }
+
+    rax.attach(unauthenticatedAxios)
+
+    return unauthenticatedAxios
   }
 
   private createAuthenticatedAxios(): AxiosInstance {
@@ -36,11 +51,9 @@ export class RestreamioClient {
       const token = this.getToken()
 
       if (!token) {
-        console.log('we have no token')
         return request
       }
 
-      console.log('token is', token)
       request.headers['Authorization'] = `Bearer ${token.accessToken}`
 
       return request
@@ -58,9 +71,6 @@ export class RestreamioClient {
       return axios
         .post(refreshUrl, formData)
         .then(async tokenRefreshResponse => {
-          console.log('ok, we refreshed!')
-          console.log('previous token', this.getToken())
-          console.log('new token', tokenRefreshResponse)
           this.managedGlobalSettings.registerRestreamioAccount(
             tokenRefreshResponse.data,
           )
@@ -71,6 +81,12 @@ export class RestreamioClient {
           return Promise.resolve()
         })
     })
+
+    authenticatedAxios.defaults.raxConfig = {
+      instance: authenticatedAxios,
+    }
+
+    rax.attach(authenticatedAxios)
 
     return authenticatedAxios
   }
